@@ -21,7 +21,6 @@ const App = () => {
         <Route path='/cart' element={<Cartpage />} />
       </Routes>
 
-      <h1 className='text-4xl'>Welcome to Tech</h1>
     </>
   )
 }

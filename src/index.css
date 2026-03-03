@@ -1,3 +1,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import "tailwindcss";
+
+
+body{
+    font-family: poppins, sans-serif;
+}
+
+.bg{
+    background:url('./Images/Gemini_Generated_Image_xe7rvtxe7rvtxe7r.png') ;
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+}
