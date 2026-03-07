@@ -8,8 +8,9 @@ body{
 }
 
 .bg{
-    background:url('./Images/Gemini_Generated_Image_xe7rvtxe7rvtxe7r.png') ;
+    /* image applied inline via React import */
     background-size: cover;
     background-position: center;
-    height: 60vh;
+    background-repeat: no-repeat;
+   height: 70vh;
 }

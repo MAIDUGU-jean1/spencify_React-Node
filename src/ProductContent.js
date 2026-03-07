@@ -1,5 +1,16 @@
 // productsContent.js
 
+// productsContent.js
+
+// dynamically import all images from the Images folder using Vite's glob
+// helper.  `import.meta.globEager` returns a map of path->module, so we
+// convert to a sorted array of URLs which we later pair with products.
+const imageModules = import.meta.globEager('./Images/*.{png,jpg,jpeg,webp}');
+const imageList = Object.keys(imageModules)
+  // sort alphabetically so the order is predictable
+  .sort()
+  .map((path) => imageModules[path].default);
+
 const products = [
   // --- ELECTRONICS (1-10) ---
   {
@@ -290,10 +301,18 @@ const products = [
   }
 ];
 
+// Add an `image` field by pulling from the array we built with
+// import.meta.globEager earlier.  If there are fewer images than
+// products we fall back to the placeholder service.
+const productsWithImages = products.map((p, idx) => ({
+  ...p,
+  image: imageList[idx] || `https://via.placeholder.com/300?text=Product+${p.id}`
+}));
 
 // In React: Import it into your component like this:
 // import products from './productsContent';
 
 // Mapping: You can now loop through them to display your cards:
 // products.map(item => <ProductCard key={item.id} data={item} />)
-export default products;
+export default productsWithImages;
+export { imageList };

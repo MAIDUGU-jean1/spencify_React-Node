@@ -19,6 +19,7 @@ const App = () => {
         <Route path='/products' element={<ProductList />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cartpage />} />
+        <Route path='/src/Components/ProductGrid.jsx'/>
       </Routes>
 
     </>
