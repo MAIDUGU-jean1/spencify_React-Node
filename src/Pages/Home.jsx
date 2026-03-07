@@ -1,7 +1,6 @@
 import React from 'react'
 import bgImage from '../Images/Gemini_Generated_Image_xe7rvtxe7rvtxe7r.png'
 import ProductGrid from '../Components/ProductGrid'
-import ImageGallery from '../Components/ImageGallery'
 
 
 const Home = () => {
@@ -37,12 +36,6 @@ const Home = () => {
 
       {/* show product cards first */}
       <ProductGrid />
-
-      {/* then render a gallery of every file in src/Images */}
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold mb-4">All Image Assets</h2>
-        <ImageGallery />
-      </div>
     </div>
    </>
   )

@@ -5,7 +5,7 @@ const ProductCart = ({ product }) => {
   if (!product) return null
 
   return (
-    <Link to={`/product/${product.id}`} className="block">
+<Link to={`/products/${product.id}`} className="block">
       <div className='shadow-lg rounded-md cursor-pointer overflow-hidden'>
         <img
           src={product.image}

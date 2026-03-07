@@ -3,9 +3,8 @@
 // productsContent.js
 
 // dynamically import all images from the Images folder using Vite's glob
-// helper.  `import.meta.globEager` returns a map of path->module, so we
-// convert to a sorted array of URLs which we later pair with products.
-const imageModules = import.meta.globEager('./Images/*.{png,jpg,jpeg,webp}');
+// helper. Using import.meta.glob with { eager: true } to get all images.
+const imageModules = import.meta.glob('./Images/*.{png,jpg,jpeg,webp}', { eager: true });
 const imageList = Object.keys(imageModules)
   // sort alphabetically so the order is predictable
   .sort()
@@ -302,7 +301,7 @@ const products = [
 ];
 
 // Add an `image` field by pulling from the array we built with
-// import.meta.globEager earlier.  If there are fewer images than
+// import.meta.glob earlier. If there are fewer images than
 // products we fall back to the placeholder service.
 const productsWithImages = products.map((p, idx) => ({
   ...p,
