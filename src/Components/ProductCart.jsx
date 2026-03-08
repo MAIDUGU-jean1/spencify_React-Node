@@ -14,7 +14,9 @@ const ProductCart = ({ product }) => {
         />
         <div className="p-2">
           <h3 className="text-sm font-medium">{product.title}</h3>
+          <p className="text-gray-600 text-xs">{product.description}</p>
           <p className="text-gray-600 text-xs">${product.price}</p>
+          <p className='text-black-60 flex justify-end'>View Details </p>
         </div>
       </div>
     </Link>

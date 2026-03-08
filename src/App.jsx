@@ -1,12 +1,14 @@
-// ...existing code...
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import Navbar from './Components/Navbar'
+import Footer from './Components/Footer'
 import Home from './Pages/Home'
-import ProductDetails  from './Pages/ProductDetails'
+import ProductDetails from './Pages/ProductDetails'
 import Cartpage from './Pages/Cartpage'
 import ProductList from './Pages/ProductList'
+import Login from './Pages/Login'
+import Signup from './Pages/Signup'
 
 
 const App = () => {
@@ -19,11 +21,14 @@ const App = () => {
         <Route path='/products' element={<ProductList />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cartpage />} />
-        <Route path='/src/Components/ProductGrid.jsx'/>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
       </Routes>
 
+      <Footer/>
     </>
   )
 }
 
 export default App
+

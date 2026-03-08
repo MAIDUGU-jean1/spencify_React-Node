@@ -2,10 +2,7 @@ import React from 'react'
 import bgImage from '../Images/Gemini_Generated_Image_xe7rvtxe7rvtxe7r.png'
 import ProductGrid from '../Components/ProductGrid'
 
-
 const Home = () => {
-// productsContent.js
-
  const categories = [
   "Electronics",
   "Activewear", 
@@ -42,3 +39,4 @@ const Home = () => {
 }
 
 export default Home
+

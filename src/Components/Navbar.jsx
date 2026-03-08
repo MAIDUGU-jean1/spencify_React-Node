@@ -12,16 +12,13 @@ const Navbar = () => {
         <div className='py-4 container mx-auto px-4 md:px-2 flex justify-between items-center'>
           <ul className='flex gap-4'>
             <li>
-              <Link to='/'>Home</Link>
+              <Link to='/' className='text-gray-700 hover:text-blue-600 transition-colors'>Home</Link>
             </li>
             <li>
-              <Link to='/about'>About</Link>
+              <Link to='/products' className='text-gray-700 hover:text-blue-600 transition-colors'>Products</Link>
             </li>
             <li>
-              <Link to='/faqs'>FAQs</Link>
-            </li>
-            <li>
-              <Link to='/contact'>Contact</Link>
+              <Link to='/cart' className='text-gray-700 hover:text-blue-600 transition-colors'>Cart</Link>
             </li>
           </ul>
 
@@ -39,18 +36,18 @@ const Navbar = () => {
                 <div className='absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded shadow-lg p-3 z-50'>
                   <div className='text-sm font-semibold text-gray-700 mb-2'>My Account</div>
                   <Link
-                    to='/account'
+                    to='/signup'
                     className='block px-2 py-1 text-gray-700 hover:bg-gray-100 rounded mb-1'
                     onClick={() => setIsOpen(false)}
                   >
-                    My Account
+                    Signup
                   </Link>
                   <Link
-                    to='/signup'
+                    to='/login'
                     className='block px-2 py-1 text-gray-700 hover:bg-gray-100 rounded'
                     onClick={() => setIsOpen(false)}
                   >
-                    Signup
+                    Login
                   </Link>
                 </div>
               )}
@@ -64,13 +61,13 @@ const Navbar = () => {
         <div className='container mx-auto px-4 md:px-2 flex items-center justify-between py-3'>
           <div className='flex items-center gap-3'>
             <div className='bg-gray-200 px-4 py-2 rounded'>
-              <span className='text-gray-800 font-bold text-xl uppercase'>SPENCIFY</span>
+              <Link to='/'>
+                <span className='text-gray-800 font-bold text-xl uppercase'>SPENCIFY</span>
+              </Link>
             </div>
           </div>
-   <form action="">
-    <input type="text" placeholder='search product' className='bg-zinc-50 rounded-md border border-zinc-200  outline-0 py-2 px-55 w-full block' />
-   </form>
-          <Link to='/cart' className='text-gray-800'>
+          
+          <Link to='/products' className='text-gray-800'>
             <ShoppingCart size={54} className='cursor-pointer hg-gray-100 px-3 py-2 rounded-full'/>
           </Link>
         </div>
@@ -80,3 +77,4 @@ const Navbar = () => {
 }
 
 export default Navbar
+
