@@ -12,13 +12,13 @@ const Navbar = () => {
         <div className='py-4 container mx-auto px-4 md:px-2 flex justify-between items-center'>
           <ul className='flex gap-4'>
             <li>
-              <Link to='/' className='text-gray-700 hover:text-blue-600 transition-colors'>Home</Link>
+              <Link to='/' className='text-gray-700 transition-colors'>Home</Link>
             </li>
             <li>
-              <Link to='/products' className='text-gray-700 hover:text-blue-600 transition-colors'>Products</Link>
+              <Link to='/products' className='text-gray-700transition-colors'>Products</Link>
             </li>
             <li>
-              <Link to='/cart' className='text-gray-700 hover:text-blue-600 transition-colors'>Cart</Link>
+              <Link to='/cart' className='text-gray-700transition-colors'>Cart</Link>
             </li>
           </ul>
 
