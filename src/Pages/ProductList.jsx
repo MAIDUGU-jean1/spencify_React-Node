@@ -8,7 +8,7 @@ const ProductList = () => {
       <h1 className='text-3xl font-bold mb-8 text-center'>All Products</h1>
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
+        {products.slice(0,15).map((product) => (
           <Link to={`/products/${product.id}`} key={product.id} className="block">
             <div className='shadow-lg rounded-md cursor-pointer overflow-hidden hover:shadow-xl transition-shadow'>
               <img
