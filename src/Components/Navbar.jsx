@@ -15,10 +15,10 @@ const Navbar = () => {
               <Link to='/' className='text-gray-700 transition-colors'>Home</Link>
             </li>
             <li>
-              <Link to='/products' className='text-gray-700transition-colors'>Products</Link>
+              <Link to='/products' className='text-gray-700 transition-colors'>Products</Link>
             </li>
             <li>
-              <Link to='/cart' className='text-gray-700transition-colors'>Cart</Link>
+              <Link to='/cart' className='text-gray-700 transition-colors'>Cart</Link>
             </li>
           </ul>
 
@@ -68,7 +68,7 @@ const Navbar = () => {
           </div>
           
           <Link to='/products' className='text-gray-800'>
-            <ShoppingCart size={54} className='cursor-pointer hg-gray-100 px-3 py-2 rounded-full'/>
+<ShoppingCart size={54} className='cursor-pointer bg-gray-100 px-3 py-2 rounded-full'/>
           </Link>
         </div>
       </div>

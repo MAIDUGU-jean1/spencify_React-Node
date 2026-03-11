@@ -7,10 +7,3 @@ body{
     font-family: poppins, sans-serif;
 }
 
-.bg{
-    /* image applied inline via React import */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-   height: 70vh;
-}

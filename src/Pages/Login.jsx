@@ -1,7 +1,9 @@
-import React from 'react'
+// import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+
+    // const  [isguess, setGuess] = useState(fa);
   return (
     <div className='container mx-auto px-4 py-8'>
       <div className='max-w-md mx-auto bg-white p-8 rounded-lg shadow-md'>
