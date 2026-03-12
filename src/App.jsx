@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 
+import { CartProvider } from './contexts/CartContext'
 import Navbar from './Components/Navbar'
 import Footer from './Components/Footer'
 import Home from './Pages/Home'
@@ -13,7 +14,7 @@ import Signup from './Pages/Signup'
 
 const App = () => {
   return (
-    <>
+    <CartProvider>
       <Navbar/>
 
       <Routes>
@@ -26,7 +27,7 @@ const App = () => {
       </Routes>
 
       <Footer/>
-    </>
+    </CartProvider>
   )
 }
 

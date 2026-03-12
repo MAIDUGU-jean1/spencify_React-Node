@@ -1,10 +1,12 @@
 import { ShoppingCart, User } from 'lucide-react'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useCart } from '../contexts/CartContext'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
   const handleUserClick = () => setIsOpen(!isOpen)
+  const { cartCount } = useCart()
 
   return (
     <>
