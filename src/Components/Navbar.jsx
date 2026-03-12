@@ -36,7 +36,7 @@ const Navbar = () => {
                 <div className='absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded shadow-lg p-3 z-50'>
                   <div className='text-sm font-semibold text-gray-700 mb-2'>My Account</div>
                   <Link
-                    to='/signup'
+                    to='/signup'   
                     className='block px-2 py-1 text-gray-700 hover:bg-gray-100 rounded mb-1'
                     onClick={() => setIsOpen(false)}
                   >
