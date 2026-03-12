@@ -12,9 +12,12 @@ import Signup from './Pages/Signup'
 
 
 const App = () => {
+  // This would typically come from your authentication state
+  const isGuest = false
+
   return (
     <>
-      <Navbar/>
+      <Navbar isGuest={isGuest} />
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -25,7 +28,7 @@ const App = () => {
         <Route path='/signup' element={<Signup />} />
       </Routes>
 
-      <Footer/>
+      <Footer />
     </>
   )
 }
