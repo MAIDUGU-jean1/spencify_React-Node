@@ -1,12 +1,24 @@
+import { motion } from 'framer-motion'
 import { ShoppingCart, User } from 'lucide-react'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
+// import '../App.css'
+import '../../src/App.css'
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const handleUserClick = () => setIsOpen(!isOpen)
   const { cartCount } = useCart()
+  const [animateCart, setAnimateCart] = useState(false)
+
+  useEffect(() => {
+    if (cartCount > 0) {
+      setAnimateCart(true)
+      const timer = setTimeout(() => setAnimateCart(false), 600)
+      return () => clearTimeout(timer)
+    }
+  }, [cartCount])
 
   return (
     <>
@@ -69,8 +81,25 @@ const Navbar = () => {
             </div>
           </div>
           
-          <Link to='/products' className='text-gray-800'>
-<ShoppingCart size={54} className='cursor-pointer bg-gray-100 px-3 py-2 rounded-full'/>
+          <Link to='/cart' className='relative text-gray-800'>
+            <motion.div
+              animate={animateCart ? { scale: [1, 1.3, 1], rotate: [0, 10, -10, 0] } : {}}
+              transition={{ duration: 0.6 }}
+              className={ cartCount > 0 ? "btn-clicked cursor-pointer bg-gray-100 px-3 py-2 rounded-full" :'cursor-pointer bg-gray-100 px-3 py-2 rounded-full'}
+            >
+              <ShoppingCart size={54} />
+            </motion.div>
+            {cartCount > 0 && (
+              <motion.span
+                key={`badge-${cartCount}`}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className='absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-7 h-7 flex items-center justify-center font-bold shadow-lg border-2 border-white'
+              >
+                {cartCount}
+                
+              </motion.span>
+            )}
           </Link>
         </div>
       </div>
