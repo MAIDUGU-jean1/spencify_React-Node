@@ -13,7 +13,7 @@ import Signup from './Pages/Signup'
 
 const App = () => {
   // This would typically come from your authentication state
-  const isGuest = false
+  const isGuest = true
 
   return (
     <>
