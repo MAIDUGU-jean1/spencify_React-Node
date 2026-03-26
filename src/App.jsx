@@ -17,7 +17,7 @@ const App = () => {
   const isGuest = true
 
   return (
-    <>
+    <CartProvider>
       <Navbar isGuest={isGuest} />
 
       <Routes>
@@ -30,7 +30,7 @@ const App = () => {
       </Routes>
 
       <Footer />
-    </>
+    </CartProvider>
   )
 }
 
