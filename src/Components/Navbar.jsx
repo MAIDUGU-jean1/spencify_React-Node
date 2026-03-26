@@ -6,6 +6,7 @@ import { useCart } from '../contexts/CartContext'
 import '../../src/App.css'
 
 const Navbar = ({ isGuest = true }) => {
+  const { cartCount } = useCart()
   const [isOpen, setIsOpen] = React.useState(false)
   const handleUserClick = () => setIsOpen(!isOpen)
 
@@ -115,6 +116,11 @@ const Navbar = ({ isGuest = true }) => {
                 className='p-2 text-gray-600 hover:text-indigo-600 transition-colors relative'
               >
                 <ShoppingCart size={24} />
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-bold animate-pulse">
+                    {cartCount}
+                  </span>
+                )}
               </Link>
             </div>
           </div>

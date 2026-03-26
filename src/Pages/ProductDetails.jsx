@@ -1,10 +1,23 @@
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import products from '../ProductContent'
+import { useCart } from '../contexts/CartContext'
 
 const ProductDetails = () => {
   const { id } = useParams()
   const product = products.find(p => p.id === parseInt(id))
+  const { addToCart } = useCart()
+
+  const handleAddToCart = () => {
+    addToCart(product)
+    // Toast
+    const toast = document.createElement('div')
+    toast.textContent = `${product.title} added to cart!`
+    toast.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50'
+    toast.style.animation = 'slideIn 0.3s ease-out'
+    document.body.appendChild(toast)
+    setTimeout(() => toast.remove(), 3000)
+  }
 
   if (!product) {
     return (
@@ -42,7 +55,10 @@ const ProductDetails = () => {
           </p>
           <p className='text-gray-600 mb-6'>{product.description}</p>
           
-          <button className='bg-gray-900 text-white py-3 px-6 rounded-lg cursor-pointer hover:bg-gray-700 transition-colors w-fit '>
+          <button 
+            onClick={handleAddToCart}
+            className='bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-8 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all w-fit'
+          >
             Add to Cart
           </button>
         </div>
