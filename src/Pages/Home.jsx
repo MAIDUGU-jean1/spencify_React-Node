@@ -53,12 +53,12 @@ const Home = () => {
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Link
                   to='/products'
-                  className='inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 font-semibold rounded-lg hover:bg-gray-800 transition-all duration-300 hover:shadow-xl'
+                  className='inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-8 py-4 font-semibold rounded-lg hover:bg-gray-800 transition-all duration-300 hover:shadow-xl cursor-pointer'
                 >
                   <ShoppingBag size={20} />
                   Shop Now
                 </Link>
-                <button className="inline-flex items-center justify-center gap-2 border-2 border-gray-900 text-gray-900 px-8 py-4 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-all duration-300">
+                <button className="inline-flex items-center justify-center gap-2 border-2 border-gray-900 text-gray-900 px-8 py-4 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-all  duration-300  cursor-pointer">
                   Explore Categories
                   <ArrowRight size={20} />
                 </button>
