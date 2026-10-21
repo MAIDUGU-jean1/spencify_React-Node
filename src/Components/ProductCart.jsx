@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
 import { ShoppingBag } from 'lucide-react'
-import "../../src/App.css"
+import '../../src/App.css'
 
 const ProductCart = ({ product }) => {
-  if (!product) return null
-
   const { addToCart } = useCart()
   const [isAdded, setIsAdded] = useState(false)
-  const [count, setCount] = useState(0)
+  if (!product) return null
+
+  const handleAddToCart = () => {
+    addToCart(product)
+    setIsAdded(true)
+    window.setTimeout(() => setIsAdded(false), 1500)
+  }
 
   return (
-<div className="block hover:shadow-xl transition-shadow">
-      <div className='shadow-lg rounded-md cursor-pointer overflow-hidden'>
+    <div className='block hover:shadow-xl transition-shadow'>
+      <div className='shadow-lg rounded-md overflow-hidden'>
         <img
           src={product.image}
           alt={product.title}
@@ -26,15 +30,9 @@ const ProductCart = ({ product }) => {
           
           <div className="flex gap-2">
             <button
-              onClick={(e) => {
-                e.preventDefault()
-                e.stopPropagation()
-                addToCart(product)
-                setIsAdded(true)
-                setCount((prev) => prev + 1)
-                setTimeout(() => setIsAdded(false), 1500)
-              }}
-              className= "flex-1 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 flex items-center justify-center gap-1" 
+              type='button'
+              onClick={handleAddToCart}
+              className='flex-1 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-md text-sm font-medium transition-all duration-200 flex items-center justify-center gap-1'
             >
               {isAdded ? (
                 <>

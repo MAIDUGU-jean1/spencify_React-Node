@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
-import { Trash2, Minus, Plus } from 'lucide-react'
+import { Trash2, Minus, Plus, ShoppingCart } from 'lucide-react'
 
 const Cartpage = () => {
   const { cartItems, removeFromCart, updateQuantity, totalPrice, cartCount } = useCart()
@@ -108,4 +108,3 @@ const Cartpage = () => {
 }
 
 export default Cartpage
-

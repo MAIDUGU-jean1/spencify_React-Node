@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
+  const [subscribed, setSubscribed] = useState(false)
+
+  const handleSubscribe = (event) => {
+    event.preventDefault()
+    setSubscribed(true)
+  }
+
   return (
     <footer className='bg-gray-900 text-white mt-12'>
       {/* Newsletter Section - Centered */}
@@ -10,16 +18,20 @@ const Footer = () => {
           <p className='text-gray-400'>Get the latest updates and offers directly to your inbox</p>
         </div>
 
-        <form action="" className='relative flex items-center max-w-md mx-auto'>
+        <form onSubmit={handleSubscribe} className='relative flex items-center max-w-md mx-auto'>
             <input 
-              type="text"  
+              type="email"
+              required
+              aria-label='Email address for newsletter'
+              onChange={() => setSubscribed(false)}
               placeholder='Enter your Email' 
               className='py-3 px-4 rounded shadow-md w-full pr-24 bg-white text-gray-900'
             />
-            <button className='bg-gray-200 py-3 px-4 rounded absolute right-1 top-1/2 -translate-y-1/2 text-gray-900 font-medium hover:bg-gray-300 transition-colors'>
-              Submit
+            <button type='submit' className='bg-gray-200 py-3 px-4 rounded absolute right-1 top-1/2 -translate-y-1/2 text-gray-900 font-medium hover:bg-gray-300 transition-colors'>
+              {subscribed ? 'Subscribed' : 'Submit'}
             </button>
         </form>
+        {subscribed && <p role='status' className='text-center text-green-300 mt-3'>Thanks for subscribing to the Spencify demo newsletter.</p>}
       </div>
 
       {/* Main Footer Content - 4 Columns Grid */}
@@ -42,10 +54,10 @@ const Footer = () => {
             <div>
               <h3 className='text-xl font-bold mb-4'>Pages</h3>
               <ul className='space-y-2'>
-                <li><a href="#" className='text-gray-400 hover:text-white transition-colors'>Home</a></li>
-                <li><a href="#" className='text-gray-400 hover:text-white transition-colors'>Products</a></li>
-                <li><a href="#" className='text-gray-400 hover:text-white transition-colors'>Cart</a></li>
-                <li><a href="#" className='text-gray-400 hover:text-white transition-colors'>Login</a></li>
+                <li><Link to='/' className='text-gray-400 hover:text-white transition-colors'>Home</Link></li>
+                <li><Link to='/products' className='text-gray-400 hover:text-white transition-colors'>Products</Link></li>
+                <li><Link to='/cart' className='text-gray-400 hover:text-white transition-colors'>Cart</Link></li>
+                <li><Link to='/login' className='text-gray-400 hover:text-white transition-colors'>Login</Link></li>
               </ul>
             </div>
 
@@ -53,10 +65,10 @@ const Footer = () => {
             <div>
               <h3 className='text-xl font-bold mb-4'>Categories</h3>
               <ul className='space-y-2'>
-                <li><a href="#" className='text-gray-400 hover:text-white transition-colors'>Electronics</a></li>
-                <li><a href="#" className='text-gray-400 hover:text-white transition-colors'>Activewear</a></li>
-                <li><a href="#" className='text-gray-400 hover:text-white transition-colors'>Home Office</a></li>
-                <li><a href="#" className='text-gray-400 hover:text-white transition-colors'>Wellness</a></li>
+                <li><Link to='/products' className='text-gray-400 hover:text-white transition-colors'>Electronics</Link></li>
+                <li><Link to='/products' className='text-gray-400 hover:text-white transition-colors'>Activewear</Link></li>
+                <li><Link to='/products' className='text-gray-400 hover:text-white transition-colors'>Home Office</Link></li>
+                <li><Link to='/products' className='text-gray-400 hover:text-white transition-colors'>Wellness</Link></li>
               </ul>
             </div>
 
@@ -113,4 +125,3 @@ const Footer = () => {
 }
 
 export default Footer
-

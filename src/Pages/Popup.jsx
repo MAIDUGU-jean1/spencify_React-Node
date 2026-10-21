@@ -5,6 +5,7 @@ import { useCart } from '../contexts/CartContext';
 const Popup = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const { addToCart } = useCart();
+  const [notice, setNotice] = useState('')
 
   const openPopup = (product) => {
     setSelectedProduct(product);
@@ -16,19 +17,14 @@ const Popup = () => {
 
   const handleAddToCart = () => {
     addToCart(selectedProduct);
+    setNotice(`${selectedProduct.title} added to cart.`)
     closePopup();
-    // Simple toast/alert
-    const toast = document.createElement('div');
-    toast.textContent = `${selectedProduct.title} added to cart!`;
-    toast.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-slide-in';
-    document.body.appendChild(toast);
-    setTimeout(() => {
-      toast.remove();
-    }, 3000);
+    window.setTimeout(() => setNotice(''), 3000)
   };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
+      {notice && <div role='status' className='fixed top-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50'>{notice}</div>}
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-center mb-12 text-gray-800">Product Quick View</h1>
         
@@ -126,4 +122,3 @@ const Popup = () => {
 };
 
 export default Popup;
-
