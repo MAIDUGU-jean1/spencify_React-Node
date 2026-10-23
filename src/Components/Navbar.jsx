@@ -1,4 +1,4 @@
-import { ShoppingCart, User, LogOut, User as UserIcon } from 'lucide-react'
+import { ShoppingCart, LogOut, User as UserIcon, Menu, X } from 'lucide-react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/CartContext'
@@ -8,9 +8,8 @@ import '../../src/App.css'
 const Navbar = ({ isGuest = true }) => {
   const { cartCount } = useCart()
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isMobileNavOpen, setIsMobileNavOpen] = React.useState(false)
   const handleUserClick = () => setIsOpen(!isOpen)
-
-  console.log('Hello state ', isGuest)
 
   return (
     <>
@@ -46,6 +45,15 @@ const Navbar = ({ isGuest = true }) => {
 
             {/* Right Side - Auth Buttons or User Profile */}
             <div className='flex items-center gap-4'>
+              <button
+                type='button'
+                onClick={() => setIsMobileNavOpen((open) => !open)}
+                aria-label={isMobileNavOpen ? 'Close navigation menu' : 'Open navigation menu'}
+                aria-expanded={isMobileNavOpen}
+                className='md:hidden p-2 text-gray-600 hover:text-indigo-600'
+              >
+                {isMobileNavOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
               {isGuest ? (
                 // Guest Mode - Show Login and Sign Up buttons
                 <div className='hidden md:flex items-center gap-3'>
@@ -124,6 +132,19 @@ const Navbar = ({ isGuest = true }) => {
               </Link>
             </div>
           </div>
+          {isMobileNavOpen && (
+            <nav className='md:hidden border-t border-gray-100 py-3 flex flex-col gap-1'>
+              <Link to='/' onClick={() => setIsMobileNavOpen(false)} className='px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg'>Home</Link>
+              <Link to='/products' onClick={() => setIsMobileNavOpen(false)} className='px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg'>Market Place</Link>
+              <Link to='/cart' onClick={() => setIsMobileNavOpen(false)} className='px-3 py-2 text-gray-700 hover:bg-gray-50 rounded-lg'>Cart ({cartCount})</Link>
+              {isGuest && (
+                <>
+                  <Link to='/login' onClick={() => setIsMobileNavOpen(false)} className='px-3 py-2 text-indigo-600 hover:bg-gray-50 rounded-lg'>Login</Link>
+                  <Link to='/signup' onClick={() => setIsMobileNavOpen(false)} className='px-3 py-2 text-indigo-600 hover:bg-gray-50 rounded-lg'>Sign Up</Link>
+                </>
+              )}
+            </nav>
+          )}
         </div>
       </header>
     </>

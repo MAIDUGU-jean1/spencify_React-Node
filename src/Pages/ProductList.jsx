@@ -2,12 +2,15 @@ import React, { useState, useMemo } from 'react'
 import products from '../ProductContent'
 import { Link } from 'react-router-dom'
 import { Search, Filter, Star, ShoppingBag, Heart, Grid, List, ArrowUpDown } from 'lucide-react'
+import { useCart } from '../contexts/CartContext'
 
 const ProductList = () => {
+  const { addToCart } = useCart()
   const [activeCategory, setActiveCategory] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState('default')
   const [viewMode, setViewMode] = useState('grid')
+  const [favoriteIds, setFavoriteIds] = useState(() => new Set())
 
   const categories = [
     "All",
@@ -42,6 +45,18 @@ const ProductList = () => {
         return result
     }
   }, [activeCategory, searchQuery, sortBy])
+
+  const toggleFavorite = (id) => {
+    setFavoriteIds((current) => {
+      const updated = new Set(current)
+      if (updated.has(id)) {
+        updated.delete(id)
+      } else {
+        updated.add(id)
+      }
+      return updated
+    })
+  }
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100'>
@@ -182,7 +197,7 @@ const ProductList = () => {
             : 'space-y-4'
           }>
             {filteredProducts.map((product) => (
-              <Link to={`/products/${product.id}`} key={product.id} className="block group">
+              <div key={product.id} className='block group'>
                 <div className={viewMode === 'grid'
                   ? 'bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1'
                   : 'flex bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100'
@@ -202,10 +217,21 @@ const ProductList = () => {
                     />
                     {/* Overlay buttons */}
                     <div className='absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100'>
-                      <button className='bg-white p-3 rounded-full shadow-lg hover:bg-gray-900 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75'>
-                        <Heart size={18} />
+                      <button
+                        type='button'
+                        aria-label={favoriteIds.has(product.id) ? `Remove ${product.title} from favorites` : `Add ${product.title} to favorites`}
+                        aria-pressed={favoriteIds.has(product.id)}
+                        onClick={() => toggleFavorite(product.id)}
+                        className={`bg-white p-3 rounded-full shadow-lg hover:bg-gray-900 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 delay-75 ${favoriteIds.has(product.id) ? 'text-red-500' : ''}`}
+                      >
+                        <Heart size={18} fill={favoriteIds.has(product.id) ? 'currentColor' : 'none'} />
                       </button>
-                      <button className='bg-white p-3 rounded-full shadow-lg hover:bg-gray-900 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100'>
+                      <button
+                        type='button'
+                        aria-label={`Add ${product.title} to cart`}
+                        onClick={() => addToCart(product)}
+                        className='bg-white p-3 rounded-full shadow-lg hover:bg-gray-900 hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 delay-100'
+                      >
                         <ShoppingBag size={18} />
                       </button>
                     </div>
@@ -218,9 +244,9 @@ const ProductList = () => {
                   {/* Content */}
                   <div className={viewMode === 'grid' ? 'p-4' : 'p-4 flex-1 flex flex-col justify-between'}>
                     <div>
-                      <h3 className='font-semibold text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2'>
+                      <Link to={`/products/${product.id}`} className='font-semibold text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2'>
                         {product.title}
-                      </h3>
+                      </Link>
                       <div className='flex items-center gap-1 mt-2'>
                         {[...Array(5)].map((_, i) => (
                           <Star
@@ -236,13 +262,13 @@ const ProductList = () => {
                       <p className='text-xl font-bold text-gray-900'>
                         ${product.price.toFixed(2)}
                       </p>
-                      <button className='bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors'>
+                      <Link to={`/products/${product.id}`} className='bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors'>
                         View Details
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         ) : (

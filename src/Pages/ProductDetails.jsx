@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import products from '../ProductContent'
 import { useCart } from '../contexts/CartContext'
@@ -7,16 +7,12 @@ const ProductDetails = () => {
   const { id } = useParams()
   const product = products.find(p => p.id === parseInt(id))
   const { addToCart } = useCart()
+  const [isAdded, setIsAdded] = useState(false)
 
   const handleAddToCart = () => {
     addToCart(product)
-    // Toast
-    const toast = document.createElement('div')
-    toast.textContent = `${product.title} added to cart!`
-    toast.className = 'fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50'
-    toast.style.animation = 'slideIn 0.3s ease-out'
-    document.body.appendChild(toast)
-    setTimeout(() => toast.remove(), 3000)
+    setIsAdded(true)
+    window.setTimeout(() => setIsAdded(false), 1500)
   }
 
   if (!product) {
@@ -56,11 +52,13 @@ const ProductDetails = () => {
           <p className='text-gray-600 mb-6'>{product.description}</p>
           
           <button 
+            type='button'
             onClick={handleAddToCart}
             className='bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-4 px-8 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all w-fit'
           >
-            Add to Cart
+            {isAdded ? 'Added to Cart' : 'Add to Cart'}
           </button>
+          {isAdded && <p role='status' className='mt-3 text-green-700'>Added {product.title} to your cart.</p>}
         </div>
       </div>
     </div>
@@ -68,4 +66,3 @@ const ProductDetails = () => {
 }
 
 export default ProductDetails
-

@@ -1,14 +1,19 @@
-// import React, { useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+  const [notice, setNotice] = useState('')
 
-    // const  [isguess, setGuess] = useState(fa);
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setNotice('Login is ready for an authentication service, which is not configured in this demo.')
+  }
+
   return (
     <div className='container mx-auto px-4 py-8'>
       <div className='max-w-md mx-auto bg-white p-8 rounded-lg shadow-md'>
         <h1 className='text-2xl font-bold mb-6 text-center'>Login</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className='mb-4'>
             <label className='block text-gray-700 mb-2' htmlFor='email'>
               Email
@@ -16,6 +21,9 @@ const Login = () => {
             <input
               type='email'
               id='email'
+              name='email'
+              autoComplete='email'
+              required
               className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
               placeholder='Enter your email'
             />
@@ -27,6 +35,9 @@ const Login = () => {
             <input
               type='password'
               id='password'
+              name='password'
+              autoComplete='current-password'
+              required
               className='w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
               placeholder='Enter your password'
             />
@@ -38,6 +49,7 @@ const Login = () => {
             Login
           </button>
         </form>
+        {notice && <p role='status' className='mt-4 text-center text-sm text-gray-600'>{notice}</p>}
         <p className='mt-4 text-center text-gray-600'>
           Don't have an account?{' '}
           <Link to='/signup' className=' text-gray-900 hover:underline'>
@@ -50,4 +62,3 @@ const Login = () => {
 }
 
 export default Login
-

@@ -10,6 +10,7 @@ import Cartpage from './Pages/Cartpage'
 import ProductList from './Pages/ProductList'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
+import Checkout from './Pages/Checkout'
 
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path='/products' element={<ProductList />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/cart' element={<Cartpage />} />
+        <Route path='/checkout' element={<Checkout />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
       </Routes>
@@ -35,4 +37,3 @@ const App = () => {
 }
 
 export default App
-

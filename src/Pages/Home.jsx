@@ -58,7 +58,11 @@ const Home = () => {
                   <ShoppingBag size={20} />
                   Shop Now
                 </Link>
-                <button className="inline-flex items-center justify-center gap-2 border-2 border-gray-900 text-gray-900 px-8 py-4 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-all  duration-300  cursor-pointer">
+                <button
+                  type='button'
+                  onClick={() => document.getElementById('product-categories')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="inline-flex items-center justify-center gap-2 border-2 border-gray-900 text-gray-900 px-8 py-4 font-semibold rounded-lg hover:bg-gray-900 hover:text-white transition-all duration-300 cursor-pointer"
+                >
                   Explore Categories
                   <ArrowRight size={20} />
                 </button>
@@ -103,7 +107,7 @@ const Home = () => {
       </div>
 
       {/* Category Filter Section */}
-      <div className='container mx-auto px-4 py-12'>
+      <div id='product-categories' className='container mx-auto px-4 py-12'>
         <div className='flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8'>
           <div>
             <h2 className='text-3xl font-bold text-gray-900'>Our Products</h2>
@@ -155,9 +159,9 @@ const Home = () => {
                     <p className="text-xl font-bold text-gray-900">
                       ${product.price.toFixed(2)}
                     </p>
-                    <button className='bg-gray-900 text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-gray-700'>
+                    <span aria-hidden='true' className='bg-gray-900 text-white p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-gray-700'>
                       <ArrowRight size={18} />
-                    </button>
+                    </span>
                   </div>
                 </div>
               </div>
